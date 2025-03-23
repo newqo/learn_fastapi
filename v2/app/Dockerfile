@@ -10,4 +10,5 @@ COPY . .
 
 EXPOSE 8081
 
-CMD ["fastapi", "run", "main.py", "--port", "8081"]
+# CMD ["fastapi", "run", "main.py", "--port", "8081"]
+CMD ["sh", "-c", "sleep 5 && fastapi run main.py --port 8081"]

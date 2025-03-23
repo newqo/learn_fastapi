@@ -10,6 +10,8 @@ services:
       - 3306:3306
     volumes:
       - db_volume:/var/lib/mysql
+    networks:
+      - backend_network
 
   phpmyadmin:
     image: phpmyadmin:latest
@@ -18,11 +20,13 @@ services:
     environment:
       PMA_HOST: db
       PMA_USER: root
-      PMA_PASSWORD: root
+      PMA_PASSWORD: fastapiroot
     ports:
       - 8080:80
     depends_on:
       - db
+    networks:
+      - backend_network
   
   backend_app:
     container_name: backend_app
@@ -35,7 +39,13 @@ services:
       - db
     volumes:
       - .:/usr/src/app/backend/app/
+    networks:
+      - backend_network
     
 volumes:
   db_volume:
     driver: local
+
+networks:
+  backend_network:
+    driver: bridge
