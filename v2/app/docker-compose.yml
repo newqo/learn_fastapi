@@ -19,8 +19,6 @@ services:
     restart: always
     environment:
       PMA_HOST: db
-      PMA_USER: root
-      PMA_PASSWORD: fastapiroot
     ports:
       - 8080:80
     depends_on:
